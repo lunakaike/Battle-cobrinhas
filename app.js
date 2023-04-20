@@ -22,8 +22,8 @@ window.onload = function(){
     //^======== VELOCIDADES ========^//
 
     let vx = vy = 0; //posição x e y da grade
-    let px = 15; //posição x da cabeça da cobra
-    let py = 10; //posição y da cabeça da cobra
+    let px = 7; //posição x da cabeça da cobra
+    let py = 5; //posição y da cabeça da cobra
     let tp = 30; //tamanho da peças
     let qpx = 30; //quantidade de peças no raio x
     let qpy = 20; //quantidade de peças no raio y
@@ -76,8 +76,8 @@ window.onload = function(){
         vx = vy = 0;
         tamanhorabo = 5;
 
-        px = 15
-        py = 10
+        px = 7
+        py = 5
         
     }
 
@@ -93,11 +93,6 @@ window.onload = function(){
     function game(){
 
         if (start == 'yes') {
-
-            console.log(`co y ${py}`) 
-            console.log(`co x ${py}`) 
-            console.log(`ap y ${ay}`) 
-            console.log(`ap x ${ax}`) 
 
         px += vx;
         py += vy;
@@ -152,27 +147,27 @@ window.onload = function(){
         if (ax == px && ay == py){
             tamanhorabo++;
             ax = Math.floor(Math.random()*qpx);
-            ay = Math.floor(Math.random()*qpy);
+            ay = Math.floor(Math.random()*qpy/2-1);
         }
 
-        if (ax > qpx) {
-            ax = Math.floor(Math.random()*qpx);
+        if (ax > qpx/2-1) {
+            ax = Math.floor(Math.random()*qpx/2-1);
         }
 
-        if (ay > qpy) {
-            ay = Math.floor(Math.random()*qpy);
+        if (ay > qpy/2-1) {
+            ay = Math.floor(Math.random()*qpy/2-1);
         }
 
         for (let i = 0; i < rabo.length; i++) {
             if (rabo[i].x == ax && rabo[i].y == ay)
             {
                 
-                if (ax > qpx) {
-                    ax = Math.floor(Math.random()*qpx);
+                if (ax > qpx/2-1) {
+                    ax = Math.floor(Math.random()*qpx/2-1);
                 }
         
-                if (ay > qpy) {
-                    ay = Math.floor(Math.random()*qpy);
+                if (ay > qpy/2-1) {
+                    ay = Math.floor(Math.random()*qpy/2-1);
                 }
 
             }
