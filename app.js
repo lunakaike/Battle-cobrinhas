@@ -22,10 +22,11 @@ window.onload = function(){
     //^======== VELOCIDADES ========^//
 
     let vx = vy = 0; //posição x e y da grade
-    let px = 20; //posição x da cabeça da cobra
+    let px = 15; //posição x da cabeça da cobra
     let py = 10; //posição y da cabeça da cobra
     let tp = 30; //tamanho da peças
-    let qp = 40; //quantidade de peças
+    let qpx = 30; //quantidade de peças no raio x
+    let qpy = 20; //quantidade de peças no raio y
     let ax = 10; //posição x da maça
     let ay = 10; //posição y da maça
 
@@ -75,7 +76,7 @@ window.onload = function(){
         vx = vy = 0;
         tamanhorabo = 5;
 
-        px = 20
+        px = 15
         py = 10
         
     }
@@ -99,13 +100,16 @@ window.onload = function(){
         if (px < 0) { //parede da esquerda
             gameover();
         }
-        if (px > qp-4) { //parede da direita
+        
+        if (px > qpx-1) { //parede da direita
             gameover();
         }
+
         if (py < 0) { //parede de cima
             gameover();
         }
-        if (py > qp/2) { //parede de baixo
+
+        if (py > qpy-1) { //parede de baixo
             gameover();
         }
 
@@ -138,21 +142,36 @@ window.onload = function(){
             rabo.shift();
         }
 
-    //^======== MECANICA DO RABO========^//
+    //^====== MECANICA DO RABO ========^//
 
         if (ax == px && ay == py){
             tamanhorabo++;
-            ax = Math.floor(Math.random()*qp);
-            ay = Math.floor(Math.random()*qp);
+            ax = Math.floor(Math.random()*qpx);
+            ay = Math.floor(Math.random()*qpy);
         }
 
-        if (ax > 35) {
-            ax = Math.floor(Math.random()*qp/2);
+        if (ax > qpx) {
+            ax = Math.floor(Math.random()*qpx);
         }
 
-        if (ay < 0, ay > 19) {
-            ay = Math.floor(Math.random()*qp/2);
+        if (ay > qpy) {
+            ay = Math.floor(Math.random()*qpy);
         }
+
+        for (let i = 0; i < rabo.length; i++) {
+            if (rabo[i].x == ax && rabo[i].y == ay)
+            {
+                
+                if (ax > qpx) {
+                    ax = Math.floor(Math.random()*qpx);
+                }
+        
+                if (ay > qpy) {
+                    ay = Math.floor(Math.random()*qpy);
+                }
+
+            }
+        } 
 
     //^======== MECANICA DA MAÇA ========^//
 
