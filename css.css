@@ -120,8 +120,6 @@ a{
 .contas{
     position: absolute;
     position: relative;
-    display: flexbox;
-    height: 10.1vh;
     width: 100%;
     bottom: 0px;
     z-index: 99999999999999999999999999999999999;
