@@ -150,11 +150,11 @@ window.onload = function(){
             ay = Math.floor(Math.random()*qpy/2-1);
         }
 
-        if (ax > qpx/2-1) {
+        if (ax > qpx/2-1 | ax < 0) {
             ax = Math.floor(Math.random()*qpx/2-1);
         }
 
-        if (ay > qpy/2-1) {
+        if (ay > qpy/2-1 | ay < 0) {
             ay = Math.floor(Math.random()*qpy/2-1);
         }
 
