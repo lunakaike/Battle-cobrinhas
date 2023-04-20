@@ -94,13 +94,18 @@ window.onload = function(){
 
         if (start == 'yes') {
 
+            console.log(`co y ${py}`) 
+            console.log(`co x ${py}`) 
+            console.log(`ap y ${ay}`) 
+            console.log(`ap x ${ax}`) 
+
         px += vx;
         py += vy;
 
         if (px < 0) { //parede da esquerda
             gameover();
         }
-        
+
         if (px > qpx-1) { //parede da direita
             gameover();
         }
