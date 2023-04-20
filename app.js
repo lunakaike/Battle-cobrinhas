@@ -101,7 +101,7 @@ window.onload = function(){
             gameover();
         }
 
-        if (px > qpx-1) { //parede da direita
+        if (px > qpx/2-1) { //parede da direita
             gameover();
         }
 
@@ -109,7 +109,7 @@ window.onload = function(){
             gameover();
         }
 
-        if (py > qpy-1) { //parede de baixo
+        if (py > qpy/2-1) { //parede de baixo
             gameover();
         }
 
