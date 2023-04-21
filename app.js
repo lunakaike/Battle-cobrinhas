@@ -22,8 +22,8 @@ window.onload = function(){
     //^======== VELOCIDADES ========^//
 
     let vx = vy = 0; //posição x e y da grade
-    let px = 7; //posição x da cabeça da cobra
-    let py = 5; //posição y da cabeça da cobra
+    let px = 15; //posição x da cabeça da cobra
+    let py = 10; //posição y da cabeça da cobra
     let tp = 30; //tamanho da peças
     let qpx = 30; //quantidade de peças no raio x
     let qpy = 20; //quantidade de peças no raio y
@@ -76,8 +76,8 @@ window.onload = function(){
         vx = vy = 0;
         tamanhorabo = 5;
 
-        px = 7
-        py = 5
+        px = 15
+        py = 10
         
     }
 
@@ -146,15 +146,15 @@ window.onload = function(){
 
         if (ax == px && ay == py){
             tamanhorabo++;
-            ax = Math.floor(Math.random()*qpx);
+            ax = Math.floor(Math.random()*qpx-1);
             ay = Math.floor(Math.random()*qpy-1);
         }
 
-        if (ax > qpx-1 || ax < 0) {
+        if (ax > qpx-1) {
             ax = Math.floor(Math.random()*qpx-1);
         }
 
-        if (ay > qpy-1 || ax < 0) {
+        if (ay > qpy-1) {
             ay = Math.floor(Math.random()*qpy-1);
         }
 
