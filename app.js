@@ -121,7 +121,7 @@ window.onload = function(){
         ctx.fillStyle = "red";
         ctx.fillRect(ax*tp, ay*tp, tp,tp);
 
-        ctx.fillStyle = "rgb(44, 77, 77)";
+        ctx.fillStyle = "rgb(83, 90, 120)";
 
     //^======== DESENHANDO OS OBJETOS ========^//
 
