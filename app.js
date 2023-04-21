@@ -1,14 +1,14 @@
 
 window.onload = function(){
  
-    let grade = document.getElementById('grade');
-    let ctx = grade.getContext("2d");
-    let button_start = document.getElementById('button_start');
-    let button_settings = document.getElementById('button_settings');
-    let button_multiplayer = document.getElementById('button_multiplayer');
-    let button_extra = document.getElementById('button_extra');
-    let button_credits = document.getElementById('button_credits');
-    let menu  = document.getElementById('menu');
+    const grade = document.getElementById('grade');
+    const ctx = grade.getContext("2d");
+    const button_start = document.getElementById('button_start');
+    const button_settings = document.getElementById('button_settings');
+    const button_multiplayer = document.getElementById('button_multiplayer');
+    const button_extra = document.getElementById('button_extra');
+    const button_credits = document.getElementById('button_credits');
+    const menu  = document.getElementById('menu');
 
     document.addEventListener("keydown", keyPush);
 
@@ -39,8 +39,10 @@ window.onload = function(){
     button_start.addEventListener('click', function() {
         
         start = 'yes'
-        start.disabled = true
+        button_start.disabled = true
+        button_start.disabled = false
         menu.style.opacity = '0'
+        menu.style.zIndex = '-3'
         console.log(start)
 
     })
@@ -48,24 +50,32 @@ window.onload = function(){
     button_settings.addEventListener('click', function() {
         
         alert(`esse botão ainda não estar funcionando`)
+        button_settings.disabled = true
+        button_settings.disabled = false
 
     })
 
     button_multiplayer.addEventListener('click', function() {
         
         alert(`esse botão ainda não estar funcionando`)
+        button_multiplayer.disabled = true
+        button_multiplayer.disabled = false
 
     })
 
     button_extra.addEventListener('click', function() {
         
         alert(`esse botão ainda não estar funcionando`)
+        button_extra.disabled = true
+        button_extra.disabled = false
 
     })
 
     button_credits.addEventListener('click', function() {
         
         alert(`esse botão ainda não estar funcionando`)
+        button_credits.disabled = true
+        button_credits.disabled = false
 
     })
     
@@ -80,6 +90,8 @@ window.onload = function(){
         py = 10
         
     }
+
+    //^======== FUNÇÕES ========^//
 
     let rabo = [];
     let tamanhorabo = 5;
@@ -115,13 +127,13 @@ window.onload = function(){
 
     //^======== EFEITO DAS PAREDES ========^//
 
-        ctx.fillStyle = "black";
+        ctx.fillStyle = "black";//tela
         ctx.fillRect(0,0, grade.width, grade.height);
 
-        ctx.fillStyle = "red";
+        ctx.fillStyle = "red";//maça
         ctx.fillRect(ax*tp, ay*tp, tp,tp);
 
-        ctx.fillStyle = "rgb(83, 90, 120)";
+        ctx.fillStyle = "rgb(83, 90, 120)";//cobra
 
     //^======== DESENHANDO OS OBJETOS ========^//
 
@@ -129,9 +141,7 @@ window.onload = function(){
             ctx.fillRect(rabo[i].x*tp, rabo[i].y*tp, tp -1, tp -1);
             if (rabo[i].x == px && rabo[i].y == py)
             {
-                
                 gameover();
-
             }
         }        
 
@@ -143,6 +153,7 @@ window.onload = function(){
         }
 
     //^====== MECANICA DO RABO ========^//
+
 
         if (ax == px && ay == py){
             tamanhorabo++;
@@ -173,8 +184,6 @@ window.onload = function(){
     }
             
         }
-    
-        
 
     function keyPush(event){
 
