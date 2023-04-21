@@ -101,7 +101,7 @@ window.onload = function(){
             gameover();
         }
 
-        if (px > qpx/2-1) { //parede da direita
+        if (px > qpx-1) { //parede da direita
             gameover();
         }
 
@@ -109,7 +109,7 @@ window.onload = function(){
             gameover();
         }
 
-        if (py > qpy/2-1) { //parede de baixo
+        if (py > qpy-1) { //parede de baixo
             gameover();
         }
 
@@ -147,28 +147,23 @@ window.onload = function(){
         if (ax == px && ay == py){
             tamanhorabo++;
             ax = Math.floor(Math.random()*qpx);
-            ay = Math.floor(Math.random()*qpy/2-1);
+            ay = Math.floor(Math.random()*qpy-1);
         }
 
-        if (ax > qpx/2-1 | ax < 0) {
-            ax = Math.floor(Math.random()*qpx/2-1);
+        if (ax > qpx-1 || ax < 0) {
+            ax = Math.floor(Math.random()*qpx-1);
         }
 
-        if (ay > qpy/2-1 | ay < 0) {
-            ay = Math.floor(Math.random()*qpy/2-1);
+        if (ay > qpy-1 || ax < 0) {
+            ay = Math.floor(Math.random()*qpy-1);
         }
 
         for (let i = 0; i < rabo.length; i++) {
             if (rabo[i].x == ax && rabo[i].y == ay)
             {
                 
-                if (ax > qpx/2-1) {
-                    ax = Math.floor(Math.random()*qpx/2-1);
-                }
-        
-                if (ay > qpy/2-1) {
-                    ay = Math.floor(Math.random()*qpy/2-1);
-                }
+                    ax = Math.floor(Math.random()*qpx-1);
+                    ay = Math.floor(Math.random()*qpy-1);
 
             }
         } 
