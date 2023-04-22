@@ -25,7 +25,9 @@ body,html{
 /* TELA DO JOGO */
 
 #grade{
+    display: flex;
     margin: 0 auto;
+    z-index: 1;
 }
 
 /* MENU */
@@ -49,6 +51,7 @@ body,html{
     width: 200px;
     font-size: 1.5rem;
     transition-duration: .2s;
+    cursor: pointer;
 
 }
 
@@ -76,7 +79,28 @@ body,html{
     left: 60%;
 }
 
-#grade{
+#extra{
     display: flex;
-    margin: 0 auto;
+    position: absolute;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    z-index: -9;
+    opacity: -3;
+}
+
+.checkbox{
+    vertical-align: middle;
+    margin: 2%;
+}
+
+#div_rainbow_type_tempo{
+    position: absolute;
+    z-index: -9;
+    opacity: 0;
+    transition-duration: .2s;
+    margin-left: 15%;
 }

@@ -1,225 +1,227 @@
-
 window.onload = function(){
- 
-    const grade = document.getElementById('grade');
-    const ctx = grade.getContext("2d");
+
+    let grade = document.getElementById('grade');
+
     const button_start = document.getElementById('button_start');
-    const button_settings = document.getElementById('button_settings');
-    const button_multiplayer = document.getElementById('button_multiplayer');
-    const button_extra = document.getElementById('button_extra');
-    const button_credits = document.getElementById('button_credits');
     const menu  = document.getElementById('menu');
+    const button_extra  = document.getElementById('button_extra');
+    const extra  = document.getElementById('extra');
+
+    const rainbow_type_tempo_input  = document.getElementById('rainbow_type_tempo_input');
+    const rainbow_type_tempo_example  = document.getElementById('rainbow_type_tempo_example');
+    const rainbow_type_tempo  =  document.querySelector("#rainbow_type_tempo[type=checkbox]");
+    const div_rainbow_type_tempo  =  document.querySelector("#div_rainbow_type_tempo");
+
+    //============= ELEMENTOS HTML ==========//
+
+    let ctx = grade.getContext("2d");//grade
+
+    const vel = 1;//velocidade
+
+    let vx = vy = 0; //posição da grade
+    let px = 15; //posição da cobra(x)
+    let py = 10; //posição da cobra(y)
+    let tp = 30; //tamanho da peça 
+    let qpx = 30; //quantidade de peças(x) 
+    let qpy = 20; //quantidade de peças(y) 
+    let ax = ay = 15; //posição da maça
+
+    let rabo = []; //o objeto rabo
+    let tamanhodorapo = 5; //tamanho do rabo
+
+    let red = Math.random()*250;
+    let green = Math.random()*250;
+    let blue = Math.random()*250;
+
+    //============= ELEMENTOS ==========//
 
     document.addEventListener("keydown", keyPush);
+    setInterval(game, 80);
 
-    //^======== PEGANDO OBJETOS-HTML     ========^//
+    //============= EVENTOS DINAMICOS ==========//
 
-    const velc = -1;// Velocidade para cima
-    const vele = -1;// Velocidade para esquerda
-    const velb = 1;// Velocidade para baixo
-    const veld = 1;// Velocidade para direita
+    let start = false
+    let rtt = false // sigla para "rainbow_type_tempo"
 
-    //^======== VELOCIDADES ========^//
-
-    let vx = vy = 0; //posição x e y da grade
-    let px = 15; //posição x da cabeça da cobra
-    let py = 10; //posição y da cabeça da cobra
-    let tp = 30; //tamanho da peças
-    let qpx = 30; //quantidade de peças no raio x
-    let qpy = 20; //quantidade de peças no raio y
-    let ax = 10; //posição x da maça
-    let ay = 10; //posição y da maça
-
-    //^======== POSIÇÕES ========^//
-
-    start = 'no'
-
-    //^======== CONDIÇÕES ========^//
+    //============= CONDIÇÔES ==========//
 
     button_start.addEventListener('click', function() {
         
-        start = 'yes'
-        button_start.disabled = true
-        button_start.disabled = false
+        start = true
+        button_start.focus = false
         menu.style.opacity = '0'
         menu.style.zIndex = '-3'
         console.log(start)
 
     })
 
-    button_settings.addEventListener('click', function() {
-        
-        alert(`esse botão ainda não estar funcionando`)
-        button_settings.disabled = true
-        button_settings.disabled = false
-
-    })
-
-    button_multiplayer.addEventListener('click', function() {
-        
-        alert(`esse botão ainda não estar funcionando`)
-        button_multiplayer.disabled = true
-        button_multiplayer.disabled = false
-
-    })
-
     button_extra.addEventListener('click', function() {
         
-        alert(`esse botão ainda não estar funcionando`)
-        button_extra.disabled = true
-        button_extra.disabled = false
+        button_extra.focus = false
+        menu.style.opacity = '0'
+        menu.style.zIndex = '-3'
+        extra.style.zIndex = '1'
+        extra.style.opacity= '1'
+        console.log(extra)
 
     })
 
-    button_credits.addEventListener('click', function() {
-        
-        alert(`esse botão ainda não estar funcionando`)
-        button_credits.disabled = true
-        button_credits.disabled = false
+    //============= MENU ==========//
 
+    rainbow_type_tempo.addEventListener('click', function () {
+        if (rainbow_type_tempo.checked) {
+
+            rtt = true
+            div_rainbow_type_tempo.style.position = 'relative'
+            div_rainbow_type_tempo.style.zIndex = '1'
+            div_rainbow_type_tempo.style.opacity = '1' 
+
+        }else{
+
+            rtt = false
+            div_rainbow_type_tempo.style.position = 'absolute'
+            div_rainbow_type_tempo.style.zIndex = '-9'
+            div_rainbow_type_tempo.style.opacity = '0'
+
+        }
     })
-    
-    //^======== EVENTOS ========^//
+
+    //============= SISTEMA DO EXTRA ==========//
 
     function gameover() {
 
-        vx = vy = 0;
-        tamanhorabo = 5;
+        tamanhodorapo = 5
 
         px = 15
         py = 10
+
+        vy = 0
+        vx = 0
         
     }
 
-    //^======== FUNÇÕES ========^//
-
-    let rabo = [];
-    let tamanhorabo = 5;
-
-    //^======== RABO ========^//
-
-        setInterval(game, 80);
-
-    //^======== ATUALIZANDO O JOGO / VELOCIDADE DA COBRA ========^//
-
     function game(){
 
-        if (start == 'yes') {
+        if (start == true) {
 
-        px += vx;
-        py += vy;
+            px += vx;
+            py += vy;
 
-        if (px < 0) { //parede da esquerda
-            gameover();
+        if (px <0) {
+            gameover()
         }
 
-        if (px > qpx-1) { //parede da direita
-            gameover();
+        if (px > qpx-1) {
+            gameover()
         }
 
-        if (py < 0) { //parede de cima
-            gameover();
+        if (py < 0) {
+            gameover()
         }
 
-        if (py > qpy-1) { //parede de baixo
-            gameover();
+        if (py > qpy-1) {
+            gameover()
         }
 
-    //^======== EFEITO DAS PAREDES ========^//
-
-        ctx.fillStyle = "black";//tela
+        ctx.fillStyle = "black";
         ctx.fillRect(0,0, grade.width, grade.height);
 
-        ctx.fillStyle = "red";//maça
+        ctx.fillStyle = "red";
         ctx.fillRect(ax*tp, ay*tp, tp,tp);
 
-        ctx.fillStyle = "rgb(83, 90, 120)";//cobra
-
-    //^======== DESENHANDO OS OBJETOS ========^//
-
+        ctx.fillStyle = `rgb(${red}, ${green}, ${blue})`;
         for (let i = 0; i < rabo.length; i++) {
-            ctx.fillRect(rabo[i].x*tp, rabo[i].y*tp, tp -1, tp -1);
+            ctx.fillRect(rabo[i].x*tp, rabo[i].y*tp, tp-1,tp-1);
             if (rabo[i].x == px && rabo[i].y == py)
             {
-                gameover();
+                gameover()
             }
-        }        
-
-    //^======== GAME OVER ========^//
+        }
 
         rabo.push({x:px,y:py })
-        while (rabo.length > tamanhorabo) {
+        while (rabo.length > tamanhodorapo) {
             rabo.shift();
         }
 
-    //^====== MECANICA DO RABO ========^//
-
-
         if (ax == px && ay == py){
-            tamanhorabo++;
+            tamanhodorapo++;
+            console.log(ax)
+            console.log(ay)
             ax = Math.floor(Math.random()*qpx-1);
             ay = Math.floor(Math.random()*qpy-1);
-        }
 
-        if (ax > qpx-1) {
-            ax = Math.floor(Math.random()*qpx-1);
-        }
-
-        if (ay > qpy-1) {
-            ay = Math.floor(Math.random()*qpy-1);
-        }
-
-        for (let i = 0; i < rabo.length; i++) {
-            if (rabo[i].x == ax && rabo[i].y == ay)
-            {
+            if (ax >= qpx-1) {
                 
-                    ax = Math.floor(Math.random()*qpx-1);
-                    ay = Math.floor(Math.random()*qpy-1);
+                ax = Math.floor(Math.random()*qpx-1);
 
             }
-        } 
 
-    //^======== MECANICA DA MAÇA ========^//
+            if (ay >= qpy-1) {
+                
+                ay = Math.floor(Math.random()*qpy-1);
+
+            }
+
+            if (ax <= 0) {
+                
+                ax = Math.floor(Math.random()*qpx-1);
+
+            }
+
+            if (ay <= 0) {
+                
+                ay = Math.floor(Math.random()*qpy-1);
+
+            }
+        }
 
     }
             
         }
+        
 
     function keyPush(event){
 
         switch (event.keyCode) {
-            case 40: // baixo
-            if (vy !== velc) {
-                vx = 0;
-                vy = velb;
-            }
+            case 37: // Left
+
+                if (vx !== vel) {
+                    vx = -vel;
+                    vy = 0;
+                }
+
                 break;
-            case 38: // cima
-            if (vy !== velb) {
-                vx = 0;
-                vy = velc;
-            }
+
+            case 38: // up
+
+                if (vy !== vel) {
+                    vx = 0;
+                    vy = -vel;
+                }
+
                 break;
-            case 39: // direita
-            if (vx !== vele) {
-                vx = veld;
-                vy = 0;
-            }
+
+            case 39: // right
+
+                if (vx !== -vel) {
+                    vx = vel;
+                    vy = 0;
+                }
+
                 break;
-            case 37: // esquerda
-            if (vx !== veld) {
-                vx = vele;
-                vy = 0;
-            }
+
+            case 40: // down
+
+                if (vy !== -vel) {
+                    vx = 0;
+                    vy = vel;
+                }
+
                 break;          
             default:
                 
                 break;
-
-        //^======== CONTROLES ========^//
-
         }
-
 
 
     }

@@ -6,31 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Battle cobrinhas</title>
 
-    <script type="text/javascript" src="app.js"></script>
-
-
     <link rel="stylesheet" href="css/css.css">
 </head>
 <body>
     <div id="menu">
 
         <div id="start" class="div_button">
-            <button id="button_start" class="button">Start</button>
+            <button id="button_start" class="button" autofocus>Start</button>
         </div>
 
-        <div id="settings" class="div_button">
+        <div id="settings_menu" class="div_button">
             <button id="button_settings" class="button">Settings</button>
         </div>
 
-        <div id="multiplayer" class="div_button">
+        <div id="multiplayer_menu" class="div_button">
             <button id="button_multiplayer" class="button">Multiplayer</button>
         </div>
 
-        <div id="extra" class="div_button">
+        <div id="extra_menu" class="div_button">
             <button id="button_extra" class="button">Extra</button>
         </div>
 
-        <div id="credits" class="div_button">
+        <div id="credits_menu" class="div_button">
             <button id="button_credits" class="button">Credits</button>
         </div>
 
@@ -51,9 +48,57 @@
         </div>
 
     </div>
-    
-    <canvas id="grade" width="900px" height="600px"></canvas>
+
+    <div id="extra">
+
+        <div>
+
+            <h1>MODOS</h1>
+            <h3>arco-iris</h3>
+            <p>  *Esse modo deixa um desses objetos mudando de cor, como um arco-iris 🙂 </p><br>
+
+            <p>  ⚠️  NÃO RECOMEDADO DOIS ATIVOS ⚠️ </p>
+            <p>  ⚠️  ESSE VOCÊ FOR EPILÉTICO NÃO ATIVE ESSE MODO⚠️ </p><br>
+
+            <p>O que ficará com esse efeito?</p>
+
+            <input type="checkbox" name="rainbow_maca" class="checkbox" id="rainbow_maca"><label for="rainbow_maca">Maça</label>
+
+            <input type="checkbox" name="rainbow_grade" class="checkbox" id="rainbow_grade"> <label>Cenario do jogo</label>
+
+            <input type="checkbox" class="checkbox" name="rainbow_cobra" id="rainbow_cobra"> <label>Cobra</label><br><br>
+
+            <p>qual será o tipo ?</p>
+
+            <input type="checkbox" class="checkbox" name="rainbow_type_ponto" id="rainbow_type_ponto">
+            <label>Ponto ( A cor mudará a cada ponto )</label><br>
+
+            <input type="checkbox" class="checkbox" name="rainbow_type_tempo" id="rainbow_type_tempo" onclick="verificar()">
+            <label>Tempo ( Mudará a cada determinado intervalo de tempo )</label><br>
+
+            <div id="div_rainbow_type_tempo">
+
+                <label>Tempo de mudança da cor</label><br>
+                1s<input type="range" class="checkbox" min="1" max="200" name="rainbow_" id="rainbow_type_tempo_input">200s
+                
+                <div id="rainbow_type_tempo_example"></div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div>
+
+        <h1 id="score"></h1>
+        <canvas id="grade" width="900px" height="600px"></canvas>
+
+    </div>
     
     </div>
 </body>
+
+<script defer type="text/javascript" src="app.js"></script>
+<script defer type="text/javascript" src="extra.js"></script>
+
 </html>
