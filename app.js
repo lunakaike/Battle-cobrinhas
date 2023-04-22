@@ -6,8 +6,9 @@ window.onload = function(){
     const menu  = document.getElementById('menu');
     const button_extra  = document.getElementById('button_extra');
     const extra  = document.getElementById('extra');
+    const tst = document.getElementById('tst');
 
-    const rainbow_type_tempo_input  = document.getElementById('rainbow_type_tempo_input');
+    const rainbow_type_tempo_input  = document.querySelector('#rainbow_type_tempo_input');
     const rainbow_type_tempo_example  = document.getElementById('rainbow_type_tempo_example');
     const rainbow_type_tempo  =  document.querySelector("#rainbow_type_tempo[type=checkbox]");
     const div_rainbow_type_tempo  =  document.querySelector("#div_rainbow_type_tempo");
@@ -29,7 +30,7 @@ window.onload = function(){
     let rabo = []; //o objeto rabo
     let tamanhodorapo = 5; //tamanho do rabo
 
-    let red = Math.random()*250;
+    let red = Math.random()*150;
     let green = Math.random()*250;
     let blue = Math.random()*250;
 
@@ -42,6 +43,7 @@ window.onload = function(){
 
     let start = false
     let rtt = false // sigla para "rainbow_type_tempo"
+    let rtv = 0 // sigla para "rainbow_input_value"
 
     //============= CONDIÇÔES ==========//
 
@@ -66,6 +68,17 @@ window.onload = function(){
 
     })
 
+    tst.addEventListener('click', function() {
+        
+        button_extra.focus = false
+        menu.style.opacity = '1'
+        menu.style.zIndex = '1'
+        extra.style.zIndex = '-9'
+        extra.style.opacity= '0'
+        console.log(extra)
+
+    })
+
     //============= MENU ==========//
 
     rainbow_type_tempo.addEventListener('click', function () {
@@ -86,6 +99,12 @@ window.onload = function(){
         }
     })
 
+    rainbow_type_tempo_input.addEventListener('input', function () {
+        rtv = rainbow_type_tempo_input.value
+    })
+
+
+
     //============= SISTEMA DO EXTRA ==========//
 
     function gameover() {
@@ -103,6 +122,17 @@ window.onload = function(){
     function game(){
 
         if (start == true) {
+
+            if (rtt == true) {
+                setInterval(() => {
+
+                    red = Math.random()*150;
+                    green = Math.random()*250;
+                    blue = Math.random()*250;
+                    
+                }, rtv);
+                
+            }
 
             px += vx;
             py += vy;
