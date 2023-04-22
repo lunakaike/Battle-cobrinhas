@@ -52,13 +52,17 @@ body,html{
     font-size: 1.5rem;
     transition-duration: .2s;
     cursor: pointer;
-
+    background-color: rgb(221, 243, 20);
+    border: solid 2px rgb(0, 0, 0);
 }
 
-.button:hover{
+.button:hover,
+.button:focus{
     font-size: 2rem;
     height: 67px;
     width: 267px;
+    background-color: rgb(0, 238, 255);
+    border: solid 4px rgb(0, 0, 0);
 }
 
 .div_button{
@@ -97,10 +101,28 @@ body,html{
     margin: 2%;
 }
 
+
 #div_rainbow_type_tempo{
     position: absolute;
     z-index: -9;
     opacity: 0;
     transition-duration: .2s;
-    margin-left: 15%;
+    margin-left: 10%;
+}
+
+#rainbow_type_tempo_input{
+    background-color: aqua;
+    width: 200px;
+}
+
+#rainbow_type_tempo_example{
+    display: block;
+    width: 20%;
+    height: 20%;
+    left: 20%;
+}
+
+#titulo_principal{
+    font-size: 3rem;
+    margin-bottom: 5%;
 }

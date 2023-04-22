@@ -11,8 +11,10 @@
 <body>
     <div id="menu">
 
+        <h1 id="titulo_principal">BATTLE COBRINHAS</h1>
+
         <div id="start" class="div_button">
-            <button id="button_start" class="button" autofocus>Start</button>
+            <button id="button_start" class="button">Start</button>
         </div>
 
         <div id="settings_menu" class="div_button">
@@ -78,15 +80,14 @@
 
             <div id="div_rainbow_type_tempo">
 
-                <label>Tempo de mudança da cor</label><br>
-                1s<input type="range" class="checkbox" min="1" value="80" max="200" name="rainbow_" id="rainbow_type_tempo_input">200s
-                
-                <div id="rainbow_type_tempo_example"></div>
+                <label id="rainbow_type_tempo_input_text">Tempo de mudança da cor</label><br><br>
+                0.1s<input type="range" class="checkbox" min="0.1" step="0.1" value="5" max="10" name="rainbow_" id="rainbow_type_tempo_input">
+                <span id="rainbow_type_tempo_input_example">5s</span><br>
 
             </div>
         </div>
 
-        <button id="tst">lllllllllllllllll</button>
+        <button id="tst">X</button>
 
     </div>
 
@@ -101,6 +102,5 @@
 </body>
 
 <script defer type="text/javascript" src="app.js"></script>
-<script defer type="text/javascript" src="extra.js"></script>
 
 </html>

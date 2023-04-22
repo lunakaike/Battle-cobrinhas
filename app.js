@@ -9,9 +9,12 @@ window.onload = function(){
     const tst = document.getElementById('tst');
 
     const rainbow_type_tempo_input  = document.querySelector('#rainbow_type_tempo_input');
-    const rainbow_type_tempo_example  = document.getElementById('rainbow_type_tempo_example');
     const rainbow_type_tempo  =  document.querySelector("#rainbow_type_tempo[type=checkbox]");
     const div_rainbow_type_tempo  =  document.querySelector("#div_rainbow_type_tempo");
+    const rainbow_type_tempo_input_example  =  document.querySelector("#rainbow_type_tempo_input_example");
+    const rainbow_cobra  =  document.querySelector("#rainbow_cobra");
+    const rainbow_grade =  document.querySelector("#rainbow_grade");
+    const rainbow_maca =  document.querySelector("#rainbow_maca");
 
     //============= ELEMENTOS HTML ==========//
 
@@ -30,10 +33,6 @@ window.onload = function(){
     let rabo = []; //o objeto rabo
     let tamanhodorapo = 5; //tamanho do rabo
 
-    let red = Math.random()*150;
-    let green = Math.random()*250;
-    let blue = Math.random()*250;
-
     //============= ELEMENTOS ==========//
 
     document.addEventListener("keydown", keyPush);
@@ -41,9 +40,24 @@ window.onload = function(){
 
     //============= EVENTOS DINAMICOS ==========//
 
+    redc = Math.random()*150;
+    greenc = Math.random()*250;
+    bluec = Math.random()*250;
+
+    redm = 250;
+    greenm = 0;
+    bluem = 0;
+
+    redg = 23;
+    greeng = 23;
+    blueg = 23;
+
     let start = false
     let rtt = false // sigla para "rainbow_type_tempo"
     let rtv = 0 // sigla para "rainbow_input_value"
+    let rag = false // sigla para "rainbow_grade"
+    let rac = false // sigla para "rainbow_cobra"
+    let ram = false // sigla para "rainbow_maça"
 
     //============= CONDIÇÔES ==========//
 
@@ -54,6 +68,9 @@ window.onload = function(){
         menu.style.opacity = '0'
         menu.style.zIndex = '-3'
         console.log(start)
+        if (rtt = true) {
+            setInterval(rainbow_mod, rtv*1000)
+        }
 
     })
 
@@ -64,7 +81,6 @@ window.onload = function(){
         menu.style.zIndex = '-3'
         extra.style.zIndex = '1'
         extra.style.opacity= '1'
-        console.log(extra)
 
     })
 
@@ -101,9 +117,32 @@ window.onload = function(){
 
     rainbow_type_tempo_input.addEventListener('input', function () {
         rtv = rainbow_type_tempo_input.value
+        rainbow_type_tempo_input_example.textContent = `${rtv}s`
     })
 
+    rainbow_grade.addEventListener('input', function () {
+        if (rainbow_grade.checked) {
+            rag = true 
+        }else{
+            rag = false
+        }
+    })
 
+    rainbow_cobra.addEventListener('input', function () {
+        if (rainbow_cobra.checked) {
+            rac = true 
+        }else{
+            rac = false
+        }
+    })
+    
+    rainbow_maca.addEventListener('input', function () {
+        if (rainbow_maca.checked) {
+            ram = true
+        }else{
+            ram = false
+        }
+    })
 
     //============= SISTEMA DO EXTRA ==========//
 
@@ -119,20 +158,40 @@ window.onload = function(){
         
     }
 
+    function rainbow_mod() {
+        if (rtt == true) {
+
+            if (rac == true) {
+
+                redc = Math.random()*250;
+                greenc = Math.random()*250;
+                bluec = Math.random()*250;
+               
+           }
+    
+           if (ram == true) {
+    
+                redm = Math.random()*250;
+                greenm = Math.random()*250;
+                bluem = Math.random()*250;
+               
+           }
+    
+           if (rag == true) {
+    
+                redg = Math.random()*250;
+                greeng = Math.random()*250;
+                blueg = Math.random()*250;
+               
+           }
+            
+        }
+            
+        }
+
     function game(){
 
         if (start == true) {
-
-            if (rtt == true) {
-                setInterval(() => {
-
-                    red = Math.random()*150;
-                    green = Math.random()*250;
-                    blue = Math.random()*250;
-                    
-                }, rtv);
-                
-            }
 
             px += vx;
             py += vy;
@@ -153,13 +212,13 @@ window.onload = function(){
             gameover()
         }
 
-        ctx.fillStyle = "black";
+        ctx.fillStyle = `rgb(${redg}, ${greeng}, ${blueg})`;//;//grade
         ctx.fillRect(0,0, grade.width, grade.height);
 
-        ctx.fillStyle = "red";
+        ctx.fillStyle = `rgb(${redm}, ${greenm}, ${bluem})`;//;//maça
         ctx.fillRect(ax*tp, ay*tp, tp,tp);
 
-        ctx.fillStyle = `rgb(${red}, ${green}, ${blue})`;
+        ctx.fillStyle = `rgb(${redc}, ${greenc}, ${bluec})`;//cobra
         for (let i = 0; i < rabo.length; i++) {
             ctx.fillRect(rabo[i].x*tp, rabo[i].y*tp, tp-1,tp-1);
             if (rabo[i].x == px && rabo[i].y == py)
