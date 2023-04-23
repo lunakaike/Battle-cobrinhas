@@ -1,6 +1,7 @@
 window.onload = function(){
 
     let grade = document.getElementById('grade');
+    const score = document.querySelector("#score");
 
     const button_start = document.getElementById('button_start');
     const menu  = document.getElementById('menu');
@@ -15,6 +16,8 @@ window.onload = function(){
     const rainbow_cobra  =  document.querySelector("#rainbow_cobra");
     const rainbow_grade =  document.querySelector("#rainbow_grade");
     const rainbow_maca =  document.querySelector("#rainbow_maca");
+    const rainbow_type_ponto =  document.querySelector("#rainbow_type_ponto[type=checkbox]");
+    const div_rainbow_options = document.getElementById('div_rainbow_options');
 
     //============= ELEMENTOS HTML ==========//
 
@@ -53,11 +56,14 @@ window.onload = function(){
     blueg = 23;
 
     let start = false
+
     let rtt = false // sigla para "rainbow_type_tempo"
     let rtv = 0 // sigla para "rainbow_input_value"
     let rag = false // sigla para "rainbow_grade"
     let rac = false // sigla para "rainbow_cobra"
     let ram = false // sigla para "rainbow_maça"
+
+    let rtp = false // sigla para "rainbow_type_ponto"
 
     //============= CONDIÇÔES ==========//
 
@@ -68,7 +74,7 @@ window.onload = function(){
         menu.style.opacity = '0'
         menu.style.zIndex = '-3'
         console.log(start)
-        if (rtt = true) {
+        if (rtt == true) {
             setInterval(rainbow_mod, rtv*1000)
         }
 
@@ -84,6 +90,8 @@ window.onload = function(){
 
     })
 
+    //============= MENU ==========//
+
     tst.addEventListener('click', function() {
         
         button_extra.focus = false
@@ -95,15 +103,16 @@ window.onload = function(){
 
     })
 
-    //============= MENU ==========//
-
     rainbow_type_tempo.addEventListener('click', function () {
         if (rainbow_type_tempo.checked) {
 
             rtt = true
             div_rainbow_type_tempo.style.position = 'relative'
             div_rainbow_type_tempo.style.zIndex = '1'
-            div_rainbow_type_tempo.style.opacity = '1' 
+            div_rainbow_type_tempo.style.opacity = '1'
+            div_rainbow_options.style.position = 'relative'
+            div_rainbow_options.style.zIndex = '1'
+            div_rainbow_options.style.opacity = '1' 
 
         }else{
 
@@ -112,12 +121,41 @@ window.onload = function(){
             div_rainbow_type_tempo.style.zIndex = '-9'
             div_rainbow_type_tempo.style.opacity = '0'
 
+            if (rtt == false && rtp == false) {
+
+            div_rainbow_options.style.position = 'absolute'
+            div_rainbow_options.style.zIndex = '-9'
+            div_rainbow_options.style.opacity = '0'
+
         }
-    })
+
+    }})
+
+    rainbow_type_ponto.addEventListener('click', function () {
+        if (rainbow_type_ponto.checked) {
+
+            rtp = true
+            div_rainbow_options.style.position = 'relative'
+            div_rainbow_options.style.zIndex = '1'
+            div_rainbow_options.style.opacity = '1'
+
+        }else{
+
+            rtp = false
+            if (rtt == false && rtp == false) {
+            div_rainbow_options.style.position = 'absolute'
+            div_rainbow_options.style.zIndex = '-9'
+            div_rainbow_options.style.opacity = '0'
+
+        }
+    }})
 
     rainbow_type_tempo_input.addEventListener('input', function () {
         rtv = rainbow_type_tempo_input.value
         rainbow_type_tempo_input_example.textContent = `${rtv}s`
+        if (rtv < 1) {
+            rainbow_type_tempo_input_example.textContent += ` CUIDADO`
+        }
     })
 
     rainbow_grade.addEventListener('input', function () {
@@ -155,11 +193,13 @@ window.onload = function(){
 
         vy = 0
         vx = 0
+
+        score.textContent = `pontos: 5`
         
     }
 
     function rainbow_mod() {
-        if (rtt == true) {
+        if (rtt == true || rtp == true) {
 
             if (rac == true) {
 
@@ -179,7 +219,7 @@ window.onload = function(){
     
            if (rag == true) {
     
-                redg = Math.random()*250;
+                redg = Math.random()*150;
                 greeng = Math.random()*250;
                 blueg = Math.random()*250;
                
@@ -219,8 +259,11 @@ window.onload = function(){
         ctx.fillRect(ax*tp, ay*tp, tp,tp);
 
         ctx.fillStyle = `rgb(${redc}, ${greenc}, ${bluec})`;//cobra
+
         for (let i = 0; i < rabo.length; i++) {
+            
             ctx.fillRect(rabo[i].x*tp, rabo[i].y*tp, tp-1,tp-1);
+
             if (rabo[i].x == px && rabo[i].y == py)
             {
                 gameover()
@@ -232,35 +275,24 @@ window.onload = function(){
             rabo.shift();
         }
 
+        while (ax < 0 || ax >= qpx || ay < 0 || ay >= qpy) {                       
+                ax = Math.round(Math.random()*qpx-1);              
+                ay = Math.round(Math.random()*qpy-1);
+            
+        }
+
         if (ax == px && ay == py){
             tamanhodorapo++;
+            ax = Math.round(Math.random()*qpx-1);
+            ay = Math.round(Math.random()*qpy-1);
+
+            score.textContent = `pontos: ${tamanhodorapo}` 
+
             console.log(ax)
             console.log(ay)
-            ax = Math.floor(Math.random()*qpx-1);
-            ay = Math.floor(Math.random()*qpy-1);
 
-            if (ax >= qpx-1) {
-                
-                ax = Math.floor(Math.random()*qpx-1);
-
-            }
-
-            if (ay >= qpy-1) {
-                
-                ay = Math.floor(Math.random()*qpy-1);
-
-            }
-
-            if (ax <= 0) {
-                
-                ax = Math.floor(Math.random()*qpx-1);
-
-            }
-
-            if (ay <= 0) {
-                
-                ay = Math.floor(Math.random()*qpy-1);
-
+            if (rtp == true) {
+                rainbow_mod()
             }
         }
 
@@ -272,7 +304,7 @@ window.onload = function(){
     function keyPush(event){
 
         switch (event.keyCode) {
-            case 37: // Left
+            case 37: // esquerda
 
                 if (vx !== vel) {
                     vx = -vel;
@@ -281,7 +313,7 @@ window.onload = function(){
 
                 break;
 
-            case 38: // up
+            case 38: // cima
 
                 if (vy !== vel) {
                     vx = 0;
@@ -290,7 +322,7 @@ window.onload = function(){
 
                 break;
 
-            case 39: // right
+            case 39: // direita
 
                 if (vx !== -vel) {
                     vx = vel;
@@ -299,7 +331,7 @@ window.onload = function(){
 
                 break;
 
-            case 40: // down
+            case 40: // baixo
 
                 if (vy !== -vel) {
                     vx = 0;
