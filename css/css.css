@@ -31,8 +31,8 @@ body,html{
 }
 
 #score{
-    opacity: 1;
-    z-index: 1;
+    opacity: 0;
+    z-index: -9;
     position: absolute;
     top: 1%;
     left: 6%;

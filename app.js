@@ -74,6 +74,10 @@ window.onload = function(){
         menu.style.opacity = '0'
         menu.style.zIndex = '-3'
         console.log(start)
+
+        score.style.opacity = 1
+        score.style.zIndex = 1
+
         if (rtt == true) {
             setInterval(rainbow_mod, rtv*1000)
         }
