@@ -54,6 +54,13 @@ body,html{
     height: 500px;
 }
 
+a,
+a:active,
+a:visited{
+    text-decoration: none;
+    color: black;
+}
+
 .button{
     text-align: center;
     height: 50px;

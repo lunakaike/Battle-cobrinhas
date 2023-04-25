@@ -1,0 +1,128 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: rgb(83, 83, 83);
+}
+
+.cena_player{
+    z-index: 1;
+    position: absolute;
+    width: 30%;
+    height: 40%;
+    background-color: rgb(83, 83, 83);
+    border: solid 3px black;
+
+}
+
+#cena_player_1{
+    left: 5%;
+    top: 5%;
+}
+
+#cena_player_3{
+    left: 5%;
+    bottom: 5%;
+}
+
+#cena_player_2{
+    right: 5%;
+    top: 5%;
+}
+
+#cena_player_4{
+    right: 5%;
+    bottom: 5%;
+}
+
+#start{
+    position: absolute;
+    width: 20%;
+    height: 15%;
+    font-size: 2rem;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+    border-radius: 10%;
+    background-color: rgb(255, 255, 0);
+    border: solid 1px black;
+    transition-duration: .2s;
+    cursor: pointer;
+}
+
+#start:hover{
+    background-image: linear-gradient(rgb(255, 255, 0),rgba(255, 0, 0, 0.9));
+    border: solid 3px black;
+    width: 23%;
+    height: 18%;
+    font-size: 2.3rem;
+}
+
+.canvas_player{
+    display: block;
+    margin: 0 auto;
+    margin-top: 5%;
+    border: solid 2px rgb(255, 255, 255);
+    z-index: 9;
+    background-color: rgb(186, 190, 194);
+}
+
+#grade_multiplayer{
+    display: flex;
+    margin: 0 auto;
+    z-index: 1;
+}
+
+.selector_player{
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+
+}
+
+.button_selector{
+    z-index: 3;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    top: 50%;
+    background-color: rgb(123, 255, 0);
+    font-size: 2rem;
+    width: 80%;
+    transition-duration: .2;
+    border: solid 1px black;
+    cursor: pointer;
+}
+
+.button_selector:hover{
+    font-size: 2.1rem;
+    width: 85%;
+    border: solid 3px black;
+}
+
+.color{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    background-color: transparent;
+    width: 50px;
+    height: 50px;
+    margin-top: 2%;
+    cursor: pointer;
+    opacity: 0;
+}
+
+.color::-webkit-color-swatch{
+    border-radius: 50%;
+    border: black solid 2px;
+}
+
+.color::-moz-color-swatch{
+    border-radius: 50%;
+    border: black solid 2px;
+}

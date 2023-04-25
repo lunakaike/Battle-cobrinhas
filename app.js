@@ -25,7 +25,7 @@ window.onload = function(){
 
     const vel = 1;//velocidade
 
-    let vx = vy = 0; //posição da grade
+    let vx = vy = 0; //velocidade
     let px = 15; //posição da cobra(x)
     let py = 10; //posição da cobra(y)
     let tp = 30; //tamanho da peça 
@@ -240,7 +240,7 @@ window.onload = function(){
             px += vx;
             py += vy;
 
-        if (px <0) {
+        if (px < 0) {
             gameover()
         }
 
@@ -256,18 +256,15 @@ window.onload = function(){
             gameover()
         }
 
-        ctx.fillStyle = `rgb(${redg}, ${greeng}, ${blueg})`;//;//grade
+        ctx.fillStyle = `rgb(${redg}, ${greeng}, ${blueg})`;//grade
         ctx.fillRect(0,0, grade.width, grade.height);
 
-        ctx.fillStyle = `rgb(${redm}, ${greenm}, ${bluem})`;//;//maça
+        ctx.fillStyle = `rgb(${redm}, ${greenm}, ${bluem})`;//maça
         ctx.fillRect(ax*tp, ay*tp, tp,tp);
 
         ctx.fillStyle = `rgb(${redc}, ${greenc}, ${bluec})`;//cobra
-
         for (let i = 0; i < rabo.length; i++) {
-            
             ctx.fillRect(rabo[i].x*tp, rabo[i].y*tp, tp-1,tp-1);
-
             if (rabo[i].x == px && rabo[i].y == py)
             {
                 gameover()
