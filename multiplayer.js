@@ -1,5 +1,6 @@
 window.onload = function(){
 
+    //============= ELEMENTOS HTML ==========//
 
     //const  = document.querySelector("#");
     let grade = document.querySelector("#grade_multiplayer");
@@ -22,12 +23,25 @@ window.onload = function(){
     const canvas_player_3 = document.querySelector("#canvas_player_3");
     const canvas_player_4 = document.querySelector("#canvas_player_4");
 
-    const color_1 = document.querySelector("#color_1");
-    const color_2 = document.querySelector("#color_2");
-    const color_3 = document.querySelector("#color_3");
-    const color_4 = document.querySelector("#color_4");
+    const div_color_1 = document.querySelector("#div_color_1");
+    const div_color_2 = document.querySelector("#div_color_2");
+    const div_color_3 = document.querySelector("#div_color_3");
+    const div_color_4 = document.querySelector("#div_color_4");
 
-    //============= ELEMENTOS HTML ==========//
+    const blue_1 = document.querySelector("#blue_1");
+    const green_1 = document.querySelector("#green_1");
+    const red_1 = document.querySelector("#red_1");
+    const blue_2 = document.querySelector("#blue_2");
+    const green_2 = document.querySelector("#green_2");
+    const red_2 = document.querySelector("#red_2");
+    const blue_3 = document.querySelector("#blue_3");
+    const green_3 = document.querySelector("#green_3");
+    const red_3 = document.querySelector("#red_3");
+    const blue_4 = document.querySelector("#blue_4");
+    const green_4 = document.querySelector("#green_4");
+    const red_4 = document.querySelector("#red_4");
+
+    //============= CANVAS ==========//
 
     let ctx_1 = canvas_player_1.getContext("2d");//grade
     let ctx_2 = canvas_player_2.getContext("2d");//grade
@@ -50,7 +64,7 @@ window.onload = function(){
 
     let vx2 = vy2 = 0; //velocidade
     let px2 = 1; //posição da cobra(x)
-    let py2 = 18; //posição da cobra(y)
+    let py2 = 28; //posição da cobra(y)
 
     let rabo2 = []; //o objeto rabo
     let tamanhodorapo2 = 5; //tamanho do rabo
@@ -58,8 +72,8 @@ window.onload = function(){
     //============= PLAYER 3 ==========//
 
     let vx3 = vy3 = 0; //velocidade
-    let px3 = 28; //posição da cobra(x)
-    let py3 = 1; //posição da cobra(y)
+    let px3 = 1; //posição da cobra(x)
+    let py3 = 18; //posição da cobra(y)
 
     let rabo3 = []; //o objeto rabo
     let tamanhodorapo3 = 5; //tamanho do rabo
@@ -88,10 +102,6 @@ window.onload = function(){
 
     //============= EVENTOS DINAMICOS ==========//
 
-    red = Math.random()*150;
-    green = Math.random()*250;
-    blue = Math.random()*250;
-
     let start = false
 
     //============= CONDIÇÔES ==========//
@@ -100,14 +110,6 @@ window.onload = function(){
     let player_2 = false
     let player_3 = false
     let player_4 = false
-
-    //============= SISTEMA DE COR DOS PLAYERS ==========//
-
-    color_1.addEventListener(`input`, function(){
-        if (color_1 == ``){
-
-        }
-    })
 
     //============= MENU ==========//
 
@@ -129,28 +131,32 @@ window.onload = function(){
         button_selector_1.style.left = "-1000%"
         selector_player_1.style.left = "-1000%"
         canvas_player_1.style.border = "solid 3px black"
-        color_1.style.opacity = 1
+        div_color_1.style.opacity = 1
 
         //==================== DESENHANDO OBJETOS ======================//
 
         ctx_1.fillStyle = `#fff`
         ctx_1.fillRect(0, 0, canvas_player_1.width, canvas_player_1.height)
 
-        ctx_1.fillStyle = color_1.value
+        ctx_1.fillStyle = `rgb(${red_1.value}, ${green_1.value}, ${blue_1.value})`
         ctx_1.fillRect(px*tp, py*tp, tp*4, tp*4)
         
         ctx_1.fillStyle = `#000`
         ctx_1.fillRect(px*tp+4, py*tp+4, tp, tp)
         ctx_1.fillRect(px*tp+54, py*tp+4, tp, tp)
 
-        color_1.addEventListener(`input`, function () {
-            ctx_1.fillStyle = color_1.value
+        function colors(){
+            ctx_1.fillStyle = `rgb(${red_1.value}, ${green_1.value}, ${blue_1.value})`
             ctx_1.fillRect(px*tp, py*tp, tp*4, tp*4)
-            
+                
             ctx_1.fillStyle = `#000`
             ctx_1.fillRect(px*tp+4, py*tp+4, tp, tp)
             ctx_1.fillRect(px*tp+54, py*tp+4, tp, tp)
-        })
+        }
+
+            red_1.addEventListener(`input`, colors)
+            green_1.addEventListener(`input`, colors)
+            blue_1.addEventListener(`input`, colors)
     })
 
     button_selector_2.addEventListener('click', function(){
@@ -162,28 +168,32 @@ window.onload = function(){
         player_2 = true
         button_selector_2.style.left = "-1000%"
         selector_player_2.style.left = "-1000%"
-        color_2.style.opacity = "1"
+        div_color_2.style.opacity = "1"
 
         //==================== DESENHANDO OBJETOS ======================//
 
         ctx_2.fillStyle = `#fff`
         ctx_2.fillRect(0, 0, canvas_player_2.width, canvas_player_2.height)
 
-        ctx_2.fillStyle = `rgb(255, 0 , 255)`
+        ctx_2.fillStyle = `rgb(${red_2.value}, ${green_2.value}, ${blue_2.value})`
         ctx_2.fillRect(px*tp, py*tp, tp*4, tp*4)
 
         ctx_2.fillStyle = `#000`
         ctx_2.fillRect(px*tp+4, py*tp+4, tp, tp)
         ctx_2.fillRect(px*tp+54, py*tp+4, tp, tp)
 
-        color_2.addEventListener(`input`, function () {
-            ctx_2.fillStyle = color_2.value
+        function colors(){
+            ctx_2.fillStyle = `rgb(${red_2.value}, ${green_2.value}, ${blue_2.value})`
             ctx_2.fillRect(px*tp, py*tp, tp*4, tp*4)
-            
+                
             ctx_2.fillStyle = `#000`
             ctx_2.fillRect(px*tp+4, py*tp+4, tp, tp)
             ctx_2.fillRect(px*tp+54, py*tp+4, tp, tp)
-        })
+        }
+
+            red_2.addEventListener(`input`, colors)
+            green_2.addEventListener(`input`, colors)
+            blue_2.addEventListener(`input`, colors)
     })
 
     button_selector_3.addEventListener('click', function(){
@@ -195,28 +205,32 @@ window.onload = function(){
         player_3 = true
         button_selector_3.style.left = "-1000%"
         selector_player_3.style.left = "-1000%"
-        color_3.style.opacity = "1"
+        div_color_3.style.opacity = "1"
 
         //==================== DESENHANDO OBJETOS ======================//
 
         ctx_3.fillStyle = `#fff`
         ctx_3.fillRect(0, 0, canvas_player_3.width, canvas_player_3.height)
 
-        ctx_3.fillStyle = color_3.value
+        ctx_3.fillStyle = `rgb(${red_3.value}, ${green_3.value}, ${blue_3.value})`
         ctx_3.fillRect(px*tp, py*tp, tp*4, tp*4)
 
         ctx_3.fillStyle = `#000`
         ctx_3.fillRect(px*tp+4, py*tp+4, tp, tp)
         ctx_3.fillRect(px*tp+54, py*tp+4, tp, tp)
 
-        color_3.addEventListener(`input`, function () {
-            ctx_3.fillStyle = color_3.value
+        function colors(){
+            ctx_3.fillStyle = `rgb(${red_3.value}, ${green_3.value}, ${blue_3.value})`
             ctx_3.fillRect(px*tp, py*tp, tp*4, tp*4)
-            
+                
             ctx_3.fillStyle = `#000`
             ctx_3.fillRect(px*tp+4, py*tp+4, tp, tp)
             ctx_3.fillRect(px*tp+54, py*tp+4, tp, tp)
-        })
+        }
+
+            red_3.addEventListener(`input`, colors)
+            green_3.addEventListener(`input`, colors)
+            blue_3.addEventListener(`input`, colors)
     })
 
     button_selector_4.addEventListener('click', function(){
@@ -228,28 +242,32 @@ window.onload = function(){
         player_4 = true
         button_selector_4.style.left = "-1000%"
         selector_player_4.style.left = "-1000%"
-        color_4.style.opacity = "1"
+        div_color_4.style.opacity = "1"
 
         //==================== DESENHANDO OBJETOS ======================//
 
         ctx_4.fillStyle = `#fff`
         ctx_4.fillRect(0, 0, canvas_player_4.width, canvas_player_4.height)
 
-        ctx_4.fillStyle = color_4.value
+        ctx_4.fillStyle = `rgb(${red_4.value}, ${green_4.value}, ${blue_4.value})`
         ctx_4.fillRect(px*tp, py*tp, tp*4, tp*4)
 
         ctx_4.fillStyle = `#000`
         ctx_4.fillRect(px*tp+4, py*tp+4, tp, tp)
         ctx_4.fillRect(px*tp+54, py*tp+4, tp, tp)
 
-        color_4.addEventListener(`input`, function () {
-            ctx_4.fillStyle = color_4.value
+        function colors(){
+            ctx_4.fillStyle = `rgb(${red_4.value}, ${green_4.value}, ${blue_4.value})`
             ctx_4.fillRect(px*tp, py*tp, tp*4, tp*4)
-            
+                
             ctx_4.fillStyle = `#000`
             ctx_4.fillRect(px*tp+4, py*tp+4, tp, tp)
             ctx_4.fillRect(px*tp+54, py*tp+4, tp, tp)
-        })
+        }
+
+            red_4.addEventListener(`input`, colors)
+            green_4.addEventListener(`input`, colors)
+            blue_4.addEventListener(`input`, colors)
     })
 
     //============= SISTEMA DE ENTRADA DOS PLAYERS ==========//
@@ -270,8 +288,8 @@ window.onload = function(){
 
         tamanhodorapo2 = 5
 
-        px2 = 1
-        py2 = 18
+        px2 = 28
+        py2 = 1
 
         vy2 = 0
         vx2 = 0
@@ -282,8 +300,8 @@ window.onload = function(){
 
         tamanhodorapo3 = 5
 
-        px3 = 28
-        py3 = 1
+        px3 = 1
+        py3 = 18
 
         vy3 = 0
         vx3 = 0
@@ -344,7 +362,7 @@ window.onload = function(){
             gameover()
         }}
 
-        ctx.fillStyle = color_1.value;//cobra
+        ctx.fillStyle = `rgb(${red_1.value}, ${green_1.value}, ${blue_1.value})`;//cobra
 
         for (let i = 0; i < rabo.length; i++) {
             ctx.fillRect(rabo[i].x*tp, rabo[i].y*tp, tp-1,tp-1);
@@ -406,7 +424,7 @@ window.onload = function(){
             gameover2()
         }}
 
-        ctx.fillStyle = color_2.value
+        ctx.fillStyle = `rgb(${red_2.value}, ${green_2.value}, ${blue_2.value})`
 
         for (let i = 0; i < rabo2.length; i++) {
             ctx.fillRect(rabo2[i].x*tp, rabo2[i].y*tp, tp-1,tp-1);
@@ -468,7 +486,7 @@ window.onload = function(){
             gameover3()
         }}
 
-        ctx.fillStyle = color_3.value
+        ctx.fillStyle = `rgb(${red_3.value}, ${green_3.value}, ${blue_3.value})`
 
         for (let i = 0; i < rabo3.length; i++) {
             ctx.fillRect(rabo3[i].x*tp, rabo3[i].y*tp, tp-1,tp-1);
@@ -532,7 +550,7 @@ window.onload = function(){
             gameover4()
         }}
 
-        ctx.fillStyle = color_4.value
+        ctx.fillStyle = `rgb(${red_4.value}, ${green_4.value}, ${blue_4.value})`
 
         for (let i = 0; i < rabo4.length; i++) {
             ctx.fillRect(rabo4[i].x*tp, rabo4[i].y*tp, tp-1,tp-1);
@@ -636,16 +654,21 @@ window.onload = function(){
 
             case 65: // player 2-esquerda
 
-                    if (vx2 !== vel && player_2) {
+                if (vx2 !== vel && player_2) {
                         vx2 = -vel;
                         vy2 = 0;
-                    }
+                }
 
                 break;
 
             case 83: // player 2-baixo//
 
+                if (vy2 !== -vel && player_2) {
+                    vx2 = 0;
+                    vy2 = vel;
+                }
 
+                break;
 
             case 73: // player 3-cima//
 
