@@ -186,12 +186,20 @@ body{
     margin-left: 65%;
     margin-top: -30%;
     width: 30%;
+    opacity: 0;
 }
 
-.teclas{
+.teclas,
+.teclas:active{
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    border: none;
+    border: #000 1px solid;
     width: 30%;
     cursor: default;
-    color: black;
+    justify-content: center;
+    text-align: center;
 }
 
 .tecla_cima{

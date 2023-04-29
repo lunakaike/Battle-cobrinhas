@@ -41,6 +41,11 @@ window.onload = function(){
     const green_4 = document.querySelector("#green_4");
     const red_4 = document.querySelector("#red_4");
 
+    const div_control_1 = document.querySelector("#div_control_1");
+    const div_control_2 = document.querySelector("#div_control_2");
+    const div_control_3 = document.querySelector("#div_control_3");
+    const div_control_4 = document.querySelector("#div_control_4");
+
     //============= CANVAS ==========//
 
     let ctx_1 = canvas_player_1.getContext("2d");//grade
@@ -132,6 +137,7 @@ window.onload = function(){
         selector_player_1.style.left = "-1000%"
         canvas_player_1.style.border = "solid 3px black"
         div_color_1.style.opacity = 1
+        div_control_1.style.opacity = 1
 
         //==================== DESENHANDO OBJETOS ======================//
 
@@ -169,6 +175,7 @@ window.onload = function(){
         button_selector_2.style.left = "-1000%"
         selector_player_2.style.left = "-1000%"
         div_color_2.style.opacity = "1"
+        div_control_2.style.opacity = 1
 
         //==================== DESENHANDO OBJETOS ======================//
 
@@ -206,6 +213,7 @@ window.onload = function(){
         button_selector_3.style.left = "-1000%"
         selector_player_3.style.left = "-1000%"
         div_color_3.style.opacity = "1"
+        div_control_3.style.opacity = 1
 
         //==================== DESENHANDO OBJETOS ======================//
 
@@ -243,6 +251,7 @@ window.onload = function(){
         button_selector_4.style.left = "-1000%"
         selector_player_4.style.left = "-1000%"
         div_color_4.style.opacity = "1"
+        div_control_4.style.opacity = 1
 
         //==================== DESENHANDO OBJETOS ======================//
 
