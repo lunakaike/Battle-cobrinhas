@@ -7,7 +7,7 @@ window.onload = function(){
     const menu  = document.getElementById('menu');
     const button_extra  = document.getElementById('button_extra');
     const extra  = document.getElementById('extra');
-    const tst = document.getElementById('tst');
+    const button_close_extra = document.getElementById('button_close_extra');
 
     const rainbow_type_tempo_input  = document.querySelector('#rainbow_type_tempo_input');
     const rainbow_type_tempo  =  document.querySelector("#rainbow_type_tempo[type=checkbox]");
@@ -73,7 +73,7 @@ window.onload = function(){
         button_start.focus = false
         menu.style.opacity = '0'
         menu.style.zIndex = '-3'
-        console.log(start)
+        console.log("você entrou no modo normal")
 
         score.style.opacity = 1
         score.style.zIndex = 1
@@ -96,14 +96,13 @@ window.onload = function(){
 
     //============= MENU ==========//
 
-    tst.addEventListener('click', function() {
+    button_close_extra.addEventListener('click', function() {
         
         button_extra.focus = false
         menu.style.opacity = '1'
         menu.style.zIndex = '1'
         extra.style.zIndex = '-9'
         extra.style.opacity= '0'
-        console.log(extra)
 
     })
 

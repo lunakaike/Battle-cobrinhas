@@ -84,8 +84,6 @@ a:visited{
 .div_button{
     display: block;
     justify-content: center;
-    top: 60%;
-    left: 50%;
     color: #000;
     margin: 2%;
 }
@@ -99,6 +97,8 @@ a:visited{
     left: 60%;
 }
 
+/* MENU EXTRA */
+
 #extra{
     position: absolute;
     flex-direction:column;
@@ -107,10 +107,23 @@ a:visited{
     transform: translate(-50%, -50%);
     z-index: -9;
     opacity: 0;
-    top: 50%;
+    top: 60%;
     left: 50%;
     width: 500px;
     height: 500px;
+}
+
+.titulo_principal{
+    font-size: 3rem;
+    margin-top: 15%;
+}
+
+
+#button_close_extra{
+    position: absolute;
+    width: 10%;
+    right: 0;
+    top: -10%;
 }
 
 .checkbox{
@@ -147,11 +160,6 @@ a:visited{
     width: 20%;
     height: 20%;
     left: 20%;
-}
-
-.titulo_principal{
-    font-size: 3rem;
-    margin-bottom: 5%;
 }
 
 .alerta{

@@ -28,6 +28,7 @@ window.onload = function(){
     const div_color_3 = document.querySelector("#div_color_3");
     const div_color_4 = document.querySelector("#div_color_4");
 
+    
     const blue_1 = document.querySelector("#blue_1");
     const green_1 = document.querySelector("#green_1");
     const red_1 = document.querySelector("#red_1");
@@ -56,6 +57,14 @@ window.onload = function(){
 
     const vel = 1;//velocidade
 
+    //============= GRADE ==========//
+
+      let tp = 15; //tamanho da peça
+      let qpx = 60; //quantidade de peças(x)
+      let qpy = 40; //quantidade de peças(y)
+      let ax = qpx/2; //posição da maça(x)
+      let ay = qpy/2; //posição da maça(y)
+
     //============= PLAYER 1 ==========//
 
     let vx = vy = 0; //velocidade
@@ -68,8 +77,8 @@ window.onload = function(){
     //============= PLAYER 2 ==========//
 
     let vx2 = vy2 = 0; //velocidade
-    let px2 = 1; //posição da cobra(x)
-    let py2 = 28; //posição da cobra(y)
+    let px2 = qpx-2; //posição da cobra(x)
+    let py2 = 1; //posição da cobra(y)
 
     let rabo2 = []; //o objeto rabo
     let tamanhodorapo2 = 5; //tamanho do rabo
@@ -78,7 +87,7 @@ window.onload = function(){
 
     let vx3 = vy3 = 0; //velocidade
     let px3 = 1; //posição da cobra(x)
-    let py3 = 18; //posição da cobra(y)
+    let py3 = qpy-2; //posição da cobra(y)
 
     let rabo3 = []; //o objeto rabo
     let tamanhodorapo3 = 5; //tamanho do rabo
@@ -91,14 +100,6 @@ window.onload = function(){
 
     let rabo4 = []; //o objeto rabo
     let tamanhodorapo4 = 5; //tamanho do rabo
-
-    //============= GRADE ==========//
-
-    let tp = 30; //tamanho da peça 
-    let qpx = 30; //quantidade de peças(x) 
-    let qpy = 20; //quantidade de peças(y) 
-    let ax = 14; //posição da maça(x)
-    let ay = 9; //posição da maça(y) 
     
     //============= ELEMENTOS ==========//
 
@@ -281,8 +282,7 @@ window.onload = function(){
 
     //============= SISTEMA DE ENTRADA DOS PLAYERS ==========//
 
-    function gameover() {
-
+    function gameover(){
         tamanhodorapo = 5
 
         px = 1
@@ -290,19 +290,21 @@ window.onload = function(){
 
         vy = 0
         vx = 0
-        
+
+        go = false
     }
 
     function gameover2() {
 
         tamanhodorapo2 = 5
 
-        px2 = 28
+        px2 = qpx-2
         py2 = 1
 
         vy2 = 0
         vx2 = 0
         
+        go2 = false
     }
 
     function gameover3() {
@@ -310,32 +312,34 @@ window.onload = function(){
         tamanhodorapo3 = 5
 
         px3 = 1
-        py3 = 18
+        py3 = qpy-2
 
         vy3 = 0
         vx3 = 0
         
+        go3 = false
     }
 
     function gameover4() {
 
         tamanhodorapo4 = 5
 
-        px4 = 28
-        py4 = 18
+        px4 = qpx-2
+        py4 = qpy-2
 
         vy4 = 0
         vx4 = 0
 
         console.log("player 4 morreu")
         
+        go4 = false
     }
 
     function game(){
 
         if (start){
 
-        {// deshenhando o basico
+        // deshenhando o basico
             ctx.fillStyle = `rgb(23, 23, 23)`;//grade
             ctx.fillRect(0,0, grade.width, grade.height);
 
@@ -343,54 +347,61 @@ window.onload = function(){
             ctx.fillRect(ax*tp, ay*tp, tp,tp);
 
             while (ax < 0 || ax >= qpx || ay < 0 || ay >= qpy) {                       
-            ax = Math.round(Math.random()*qpx-1);              
-            ay = Math.round(Math.random()*qpy-1);
-        }}   
+                ax = Math.round(Math.random()*qpx-1);              
+                ay = Math.round(Math.random()*qpy-1);
+            }
 
     //==================== player 1 =====================//
 
         if (start && player_1) {
 
-            {//o basico do personagem
+        //o basico do personagem
             px += vx;
             py += vy;
 
         if (px < 0) {
-            gameover()
+            px = qpx-1
         }
 
-        if (px > qpx) {
-            gameover()
+        if (px > qpx-1) {
+            px = 0
         }
 
         if (py < 0) {
-            gameover()
+            py = qpy-1
         }
 
-        if (py > qpy) {
-            gameover()
-        }}
+        if (py > qpy-1) {
+            py = 0
+        }
 
         ctx.fillStyle = `rgb(${red_1.value}, ${green_1.value}, ${blue_1.value})`;//cobra
 
         for (let i = 0; i < rabo.length; i++) {
             ctx.fillRect(rabo[i].x*tp, rabo[i].y*tp, tp-1,tp-1);
 
-            if (rabo[i].x == px && rabo[i].y == py && player_1)
+            if (rabo[i].x == px && rabo[i].y == py)
             {
                 gameover()
+                console.log("player 1 se matou , idiota")
             }
 
             if (rabo[i].x == px2 && rabo[i].y == py2 && player_2) {
                 gameover2()
+                console.log("player 1 matou o player 2, parabens!!")
+                tamanhodorapo += 2
             }
 
             if (rabo[i].x == px3 && rabo[i].y == py3 && player_3) {
                 gameover3()
+                console.log("player 1 matou o player 3, parabens!!")
+                tamanhodorapo += 2 
             }
 
             if (rabo[i].x == px4 && rabo[i].y == py4 && player_4) {
                 gameover4()
+                console.log("player 1 matou o player 4, parabens!!")
+                tamanhodorapo += 2 
             }
         }
 
@@ -413,25 +424,25 @@ window.onload = function(){
 
         if (start && player_2) {
 
-            {//o basico do personagem
+        //o basico do personagem
             px2 += vx2;
             py2 += vy2;
 
         if (px2 < 0) {
-            gameover2()
+            px2 = qpx-1
         }
 
         if (px2 > qpx-1) {
-            gameover2()
+            px2 = 0
         }
 
         if (py2 < 0) {
-            gameover2()
+            py2 = qpy-1
         }
 
         if (py2 > qpy-1) {
-            gameover2()
-        }}
+            py2 = 0
+        }
 
         ctx.fillStyle = `rgb(${red_2.value}, ${green_2.value}, ${blue_2.value})`
 
@@ -441,20 +452,28 @@ window.onload = function(){
             if (rabo2[i].x == px && rabo2[i].y == py && player_1)
                 {
                     gameover();
+                    console.log("player 2 matou o player 1, parabens!!")
+                    tamanhodorapo2 += 2 
                 }
 
-            if (rabo2[i].x == px2 && rabo2[i].y == py2 && player_2)
+            if (rabo2[i].x == px2 && rabo2[i].y == py2)
                 {
                     gameover2()
+                    console.log("player 2 se matou, idiota")
                 }
 
-                if (rabo2[i].x == px3 && rabo2[i].y == py3 && player_3) {
+            if (rabo2[i].x == px3 && rabo2[i].y == py3 && player_3) {
                     gameover3()
+                    console.log("player 2 matou o player 3, parabens!!")
+                    tamanhodorapo2 += 2 
                 }
 
-                if (rabo2[i].x == px4 && rabo2[i].y == py4 && player_4) {
+            if (rabo2[i].x == px4 && rabo2[i].y == py4 && player_4) {
                     gameover4()
+                    console.log("player 2 matou o player 4, parabens!!")
+                    tamanhodorapo2 += 2 
                 }
+                
         }
 
         rabo2.push({x:px2 ,y:py2})
@@ -475,25 +494,25 @@ window.onload = function(){
 
         if (start && player_3) {
 
-            {//o basico do personagem
+        //o basico do personagem
             px3 += vx3;
             py3 += vy3;
 
         if (px3 < 0) {
-            gameover3()
+            px3 = qpx-1
         }
 
         if (px3 > qpx-1) {
-            gameover3()
+            px3 = 0
         }
 
         if (py3 < 0) {
-            gameover3()
+            py3 = qpy-1
         }
 
         if (py3 > qpy-1) {
-            gameover3()
-        }}
+            py3 = 0
+        }
 
         ctx.fillStyle = `rgb(${red_3.value}, ${green_3.value}, ${blue_3.value})`
 
@@ -503,21 +522,28 @@ window.onload = function(){
             if (rabo3[i].x == px && rabo3[i].y == py && player_1)
                 {
                     gameover();
+                    console.log("player 3 matou o player 1, parabens!!")
+                    tamanhodorapo3 += 2 
                 }
 
             if (rabo3[i].x == px2 && rabo3[i].y == py2 && player_2)
                 {
                     gameover2()
+                    console.log("player 3 matou o player 2, parabens!!")
+                    tamanhodorapo3 += 2 
                 }
 
-            if (rabo3[i].x == px3 && rabo3[i].y == py3 && player_3) 
+            if (rabo3[i].x == px3 && rabo3[i].y == py3) 
                 {
                     gameover3()
-            }
+                    console.log("player 3 se matou, idiota")
+                }
 
             if (rabo3[i].x == px4 && rabo3[i].y == py4 && player_4) 
                 {
                     gameover4()
+                    console.log("player 3 matou o player 4, parabens!!")
+                    tamanhodorapo3 += 2 
             }
         }
 
@@ -539,25 +565,25 @@ window.onload = function(){
 
         if (start && player_4) {
 
-            {//o basico do personagem
+        //o basico do personagem
             px4 += vx4;
             py4 += vy4;
 
         if (px4 < 0) {
-            gameover4()
+            px4 = qpx-1
         }
 
         if (px4 > qpx-1) {
-            gameover4()
+            px4 = 0
         }
 
         if (py4 < 0) {
-            gameover4()
+            py4 = qpy-1
         }
 
         if (py4 > qpy-1) {
-            gameover4()
-        }}
+            py4 = 0
+        }
 
         ctx.fillStyle = `rgb(${red_4.value}, ${green_4.value}, ${blue_4.value})`
 
@@ -567,19 +593,26 @@ window.onload = function(){
             if (rabo4[i].x == px && rabo4[i].y == py && player_1)
                 {
                     gameover();
+                    console.log("player 4 matou o player 1, parabens!!")
+                    tamanhodorapo4 += 2 
                 }
 
             if (rabo4[i].x == px2 && rabo4[i].y == py2 && player_2)
                 {
                     gameover2()
+                    console.log("player 4 matou o player 2, parabens!!")
+                    tamanhodorapo4 += 2 
                 }
 
                 if (rabo4[i].x == px3 && rabo4[i].y == py3 && player_3) {
                     gameover3()
+                    console.log("player 4 matou o player 3, parabens!!")
+                    tamanhodorapo4 += 2 
                 }
 
-                if (rabo4[i].x == px4 && rabo4[i].y == py4 && player_4) {
+                if (rabo4[i].x == px4 && rabo4[i].y == py4) {
                     gameover4()
+                    console.log("player 4 se matou, idiota")
                 }
         }
 
